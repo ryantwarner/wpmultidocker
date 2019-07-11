@@ -34,7 +34,9 @@ RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 	libnghttp2 \
 	libcurl \
 	openssl \
-	openssl-libs && \
+	openssl-libs \
+	nano \
+	mysql && \
 	sed -i 's/;error_log = syslog/error_log = \/dev\/stderr/' /etc/opt/remi/php72/php.ini && \
 	ln -sf /dev/stdout /var/log/httpd/access_log && \
 	ln -sf /dev/stderr /var/log/httpd/error_log && \
