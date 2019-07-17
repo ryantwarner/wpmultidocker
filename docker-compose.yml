@@ -4,9 +4,12 @@ services:
    centos:
      depends_on:
        - db
+     domainname: carleton.ca
+     hostname: local
      build: centos/.
      ports:
-       - "80:8080"
+       - "80:80"
+       - "443:443"
      volumes:
        - ./html:/var/www/html
        - ./cu-multitenant:/var/www/multitenant
