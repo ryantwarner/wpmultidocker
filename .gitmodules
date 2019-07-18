@@ -1,3 +1,0 @@
-[submodule "cu-multitenant"]
-	path = cu-multitenant
-	url = git@github.com:cuweb/cu-multitenant.git

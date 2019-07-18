@@ -45,6 +45,8 @@ RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 	ln -sf /opt/remi/php72/root/usr/share/php /usr/share/php && \
 	chmod -R g+w /opt/remi/php72/root/usr/share/php && \
 	ln -sf /var/opt/remi/php72/lib/php /var/lib/php && \
+	mkdir /www && \
+	ln -s /var/www /www/server && \
 	chmod -R g+w /var/www/html && \
 	yum clean all && \
 	rm -rf /var/cache/yum && \
@@ -52,6 +54,13 @@ RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 	ln -s /usr/bin/php72 /usr/bin/php && \
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 	php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+COPY wordpress /var/www/wordpress
+
+RUN cd /var/www/wordpress && \
+	COMPOSER=composer.dev.json composer update && \
+	cd config && \
+	cp .env.docker .env
 
 COPY ssl/localhost.key /etc/pki/tls/private/localhost.key
 COPY ssl/localhost.crt /etc/pki/tls/certs/localhost.crt

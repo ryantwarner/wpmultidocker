@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wppath=${1:-"/app/wordpress"}
+wppath=${1:-"/var/www/wordpress"}
 
 mkdir wp-content
 ln -s $wppath/app/stable ./wp

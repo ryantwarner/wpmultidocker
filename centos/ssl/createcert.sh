@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# generate a key for localhost
 openssl genrsa -out localhost.key 4096 &&
 
+# generate a key for localhost
 openssl req -new -sha256 \
     -out localhost.csr \
     -key localhost.key \
@@ -15,6 +17,6 @@ openssl x509 -req \
     -signkey localhost.key \
     -out localhost.crt \
     -extensions req_ext \
-    -extfile localhost.conf
+    -extfile localhost.conf &&
 
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain localhost.crt
